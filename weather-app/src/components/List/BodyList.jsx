@@ -14,18 +14,24 @@ export default function BodyList({ weatherList }){
             weatherList?.map(item => (
                 
                 <article 
-                    key={item.location.capital} 
-                    style={{ display: 'flex', justifyContent: 'space-between', gap: '5rem' }}
+                    key={item.location.capital}
+                    className='body-list'
                 >
-                <section style={{ width: '33px' }}>
+                <section
+                    className='body-list__item'
+                >
                     <span>{item.temperature.min}</span>
                 </section>
 
-                <section style={{ width: '33px' }}>
+                <section
+                    className='body-list__item' 
+                >
                     <span>{item.temperature.max}</span>
                 </section>
 
-                <section style={{ width: '115px' }}>
+                <section
+                    className='body-list__item'
+                >
                     <span>{item.location.capital}</span>
                 </section>
                 </article>

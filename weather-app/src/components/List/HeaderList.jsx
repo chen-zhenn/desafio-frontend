@@ -1,6 +1,8 @@
 export default function HeaderList({ columnList }){
     return (
-        <header style={{ display: 'flex', justifyContent: 'space-between', gap: '5rem' }}>
+        <header 
+            className='header-list'
+        >
             {
                 (columnList && Array.isArray(columnList) ) && (
 

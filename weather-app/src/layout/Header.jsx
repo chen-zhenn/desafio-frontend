@@ -1,6 +1,6 @@
 export default function HeaderLayout({ children }){
     return (
-        <header>
+        <header className='header'>
             {children}
         </header>
     )

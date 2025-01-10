@@ -88,10 +88,10 @@ function App() {
       <Layout.Content>
 
         <header>
-          <h3>Capitais</h3>
+          <h3 className='heading'>Capitais</h3>
         </header>
 
-        <aside>
+        <aside className='bl-content'>
           <List.Header columnList={['Min', 'Max', 'Cidade']} />
           {
             (weather && !!weather.length) && 

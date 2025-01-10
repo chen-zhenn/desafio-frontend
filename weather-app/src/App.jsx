@@ -17,7 +17,8 @@ import {
   Header, 
   List,
   Card,
-  Weather, 
+  Weather,
+  Loader, 
 } from './components'
 
 function App() {
@@ -29,10 +30,13 @@ function App() {
 
   const [weather, setWeather] =  useState([])
   const [filterWeather, setFilterWeather] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
       
     (async function(){
+      
+      setLoading(true)
 
       try {
         const promiseList = await Promise
@@ -69,6 +73,8 @@ function App() {
 
       } catch (error) {
         //console.log('=> error:', error)
+      } finally {
+        setLoading(false)
       }
 
     }())
@@ -108,24 +114,34 @@ function App() {
     
       <Layout.Content>
 
-        <header>
-          <h3 className='heading'>Capitais</h3>
-        </header>
+        {
+          loading ? 
+          (
+            <Loader />
+          ) : 
+          (
+            <>
+              <header>
+                <h3 className='heading'>Capitais</h3>
+              </header>
+      
+              <aside className='bl-content'>
+                <List.Header columnList={['Min', 'Max', 'Cidade']} />
+                {
+                  (weather && !!weather.length) && 
+                    <List.Body 
+                      weatherList={
+                        filterWeather && !!filterWeather.length ? 
+                        filterWeather :  
+                        weather
+                      } 
+                    />
+                }
+              </aside>
+            </>
 
-        <aside className='bl-content'>
-          <List.Header columnList={['Min', 'Max', 'Cidade']} />
-          {
-            (weather && !!weather.length) && 
-              <List.Body 
-                weatherList={
-                  filterWeather && !!filterWeather.length ? 
-                  filterWeather :  
-                  weather
-                } 
-              />
-          }
-        </aside>
-
+          )
+        }
       </Layout.Content>
     </div>
   )

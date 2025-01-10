@@ -144,3 +144,16 @@ body {
 
     }
 }
+
+.loader {
+
+    &-container {
+        position: relative;
+        width: 50px;
+        margin: 50px auto;
+    }
+
+    &-image {
+        width: 100%;
+    }
+}

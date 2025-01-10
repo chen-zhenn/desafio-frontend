@@ -48,10 +48,12 @@ function App() {
     
         const data = responseList.map(response => ({
           location: {
+            country: response.location.country,
             state: response.location.region,
             capital: response.location.name,
           },
           temperature: {
+            info: response.current.condition.text,
             icon: response.current.condition.icon,
             base: response.current.temp_c,
             min: response.current.dewpoint_c,

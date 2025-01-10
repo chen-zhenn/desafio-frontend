@@ -1,7 +1,13 @@
-import { useEffect } from 'react'
+import { 
+  useEffect, 
+  useState, 
+} from 'react'
+
 import './App.css'
 
-import { brazilStates } from './data'
+import { 
+  brazilStates, 
+} from './data'
 
 function App() {
 
@@ -9,6 +15,8 @@ function App() {
     VITE_API_KEY, 
     VITE_API_BASE_URL, 
   } = import.meta.env
+
+  const [weather, setWeather] =  useState([])
 
   useEffect(() => {
       
@@ -26,14 +34,27 @@ function App() {
           .map(promise => promise.value.json())
 
         const responseList = await Promise.all(promiseResolvedList)
-        console.log(responseList)
+    
+        const data = responseList.map(response => ({
+          location: {
+            state: response.location.region,
+            capital: response.location.name,
+          },
+          temperature: {
+            icon: response.current.condition.icon,
+            base: response.current.temp_c,
+            min: response.current.dewpoint_c,
+            max: response.current.heatindex_c,
+          }
+        }))
+
+        setWeather(data)
 
       } catch (error) {
         //console.log('=> error:', error)
       }
 
     }())
-
   }, [])
   
   return (

@@ -9,6 +9,15 @@ import {
   brazilStates, 
 } from './data'
 
+import {
+  Layout,
+} from './layout'
+
+import { 
+  Header, 
+  List, 
+} from './components'
+
 function App() {
 
   const {
@@ -56,11 +65,37 @@ function App() {
 
     }())
   }, [])
+
+  function handleSearch(event) {
+    console.log('handleSearch...')
+    const value = event.target.value
+    console.log('=> value: ', value)
+  }
   
   return (
-    <>
-      <h3>Weather App</h3>
-    </>
+    <div className='wrap'>
+
+      <Layout.Header>
+        <Header.Title title='Previsão do Tempo' />
+        <Header.Search onSearch={handleSearch} />
+      </Layout.Header>
+    
+      <Layout.Content>
+
+        <header>
+          <h3>Capitais</h3>
+        </header>
+
+        <aside>
+          <List.Header columnList={['Min', 'Max', 'Cidade']} />
+          {
+            (weather && !!weather.length) && <List.Body weatherList={weather} />
+          }
+        </aside>
+
+      </Layout.Content>
+    
+    </div>
   )
 }
 

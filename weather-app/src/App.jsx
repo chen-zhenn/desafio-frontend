@@ -92,13 +92,17 @@ function App() {
         <Header.Title title='Previsão do Tempo' />
         <Header.Search onSearch={handleSearch} />
 
-        <Card.Container>
-          <Card.Body>
-            {
-              (weather && !!weather.length) && <Weather.Details data={weather[0]}/>
-            }
-          </Card.Body>
-        </Card.Container>
+        {
+          (weather && !!weather.length) && 
+          (
+            <Card.Container>
+              <Card.Body>
+                <Weather.Details data={weather[0]}/>
+              </Card.Body>
+            </Card.Container>
+          )
+        }
+
 
       </Layout.Header>
     

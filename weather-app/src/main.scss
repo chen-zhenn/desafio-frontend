@@ -32,10 +32,9 @@ body {
 }
 
 .input {
-    width: 300px;
+    width: 100%;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    padding-left: 1rem;
     font-size: 1rem;;
     outline: none;
     border: none;
@@ -43,6 +42,10 @@ body {
     &:focus-visible {
         border: none;
         outline: none;
+    }
+
+    &::placeholder {
+        padding-left: 1rem;
     }
 }
 
@@ -72,10 +75,9 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-width: 300px;
-    min-height: 300px;
-    margin: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 1rem;
     background-color: rgba(255, 255, 255, .9);
 
@@ -110,4 +112,35 @@ body {
 
 .card-body {
     flex-grow: 1;
+    padding: 2.5rem;
+}
+
+.weather-details {
+
+    &__section {
+        margin-bottom: 1rem;
+
+        &.location {
+            text-align: left;
+            font-weight: 700;
+            font-size: .75rem;
+        }
+
+        &.temperature {
+            text-align: left;
+            
+            &:nth-of-type(2) {
+                display: flex;
+                align-items: center;
+                font-weight: 700;
+                font-size: 2.25rem;
+            }
+
+            &:nth-of-type(3) {
+                display: flex;
+                gap: 1rem;
+            }
+        }
+
+    }
 }

@@ -16,7 +16,8 @@ import {
 import { 
   Header, 
   List,
-  Card, 
+  Card,
+  Weather, 
 } from './components'
 
 function App() {
@@ -56,6 +57,9 @@ function App() {
             info: response.current.condition.text,
             icon: response.current.condition.icon,
             base: response.current.temp_c,
+            feelsLike: response.current.feelslike_c,
+            humidity: response.current.humidity,
+            wind: response.current.wind_kph,
             min: response.current.dewpoint_c,
             max: response.current.heatindex_c,
           }
@@ -90,7 +94,9 @@ function App() {
 
         <Card.Container>
           <Card.Body>
-            Content Card...
+            {
+              (weather && !!weather.length) && <Weather.Details data={weather[0]}/>
+            }
           </Card.Body>
         </Card.Container>
 

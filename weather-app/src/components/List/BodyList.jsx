@@ -1,5 +1,5 @@
 export default function BodyList({ weatherList }){
-
+    
     if(!weatherList) {
         if(!!weatherList.length) return (
             <aside>

@@ -15,7 +15,8 @@ import {
 
 import { 
   Header, 
-  List, 
+  List,
+  Card, 
 } from './components'
 
 function App() {
@@ -81,8 +82,16 @@ function App() {
     <div className='wrap'>
 
       <Layout.Header>
+
         <Header.Title title='Previsão do Tempo' />
         <Header.Search onSearch={handleSearch} />
+
+        <Card.Container>
+          <Card.Body>
+            Content Card...
+          </Card.Body>
+        </Card.Container>
+
       </Layout.Header>
     
       <Layout.Content>
@@ -106,7 +115,6 @@ function App() {
         </aside>
 
       </Layout.Content>
-    
     </div>
   )
 }

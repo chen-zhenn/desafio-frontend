@@ -26,6 +26,7 @@ function App() {
   } = import.meta.env
 
   const [weather, setWeather] =  useState([])
+  const [filterWeather, setFilterWeather] = useState([])
 
   useEffect(() => {
       
@@ -67,9 +68,13 @@ function App() {
   }, [])
 
   function handleSearch(event) {
-    console.log('handleSearch...')
     const value = event.target.value
-    console.log('=> value: ', value)
+    const wheatherData = weather
+      .filter(item => 
+        item.location.capital.toLowerCase()
+        .includes(value.toLowerCase())
+      )
+    setFilterWeather(wheatherData)
   }
   
   return (
@@ -89,7 +94,14 @@ function App() {
         <aside>
           <List.Header columnList={['Min', 'Max', 'Cidade']} />
           {
-            (weather && !!weather.length) && <List.Body weatherList={weather} />
+            (weather && !!weather.length) && 
+              <List.Body 
+                weatherList={
+                  filterWeather && !!filterWeather.length ? 
+                  filterWeather :  
+                  weather
+                } 
+              />
           }
         </aside>
 
